@@ -14,15 +14,9 @@ stepper = Stepper28byj48(pinArray=[2,3,4,5], debug = True, speed='hight', motorS
 
 print('Iniciando programa')
 
-#stepper.start()
-
 
 stepper.moveToDegrees(180)
-
-"""
-exit()
-
-sleep(7)
+sleep(2)
 stepper.moveToDegrees(60)
 sleep(2)
 stepper.setDirection('counterclockwise')
@@ -36,4 +30,8 @@ stepper.moveToDegrees(30)
 sleep(2)
 stepper.setDirection('clockwise')
 stepper.moveToDegrees(360)
-"""
+
+
+# Infinito
+
+stepper.start()
