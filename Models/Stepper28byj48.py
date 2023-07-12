@@ -77,7 +77,10 @@ class Stepper28byj48:
             print('Dirección: ', self.direction)
 
 
-    def run(self):
+    def run(self, stepsLimit = None):
+        """
+        @param stepsLimit: Cantidad de pasos a ejecutar, None para infinito
+        """
         self.active = True
 
         motorSpeed = self.motorSpeed
@@ -94,11 +97,15 @@ class Stepper28byj48:
         else:
             stepCounter = steps - 1;
 
+
+
         while self.active:
+            if not self.active:
+                break
 
-            for i in range(0, (stepsPerRev * 2) - 1):
-
-                if not self.active:
+            for i in range(0, stepsPerRev):
+                if not self.active or (stepsLimit and i >= (stepsLimit - 1)):
+                    self.active = False
                     break
 
                 if direction == 'clockwise' and stepCounter < (steps - 1):
@@ -166,3 +173,11 @@ class Stepper28byj48:
 
         if self.debug:
             print('Velocidad: ', speed)
+
+    def moveToDegrees(self, degrees):
+        # Calcular a partir de los ciclos que necesita el motor para dar una vuelto el equivalente en grados.
+        stepsPerRev = self.stepsPerRev
+
+        stepsPerDegrees = (stepsPerRev * degrees) / 360
+
+        self.run(stepsPerDegrees)
