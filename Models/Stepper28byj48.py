@@ -82,11 +82,17 @@ class Stepper28byj48:
 
         motorSpeed = self.motorSpeed
         stepsPerRev = self.stepsPerRev
-        stepCounter = 0;
 
         pins = self.pins # Instancia con los pines del motor
         speedSteps = self.speedSteps[self.speed] # Instancia con los pasos del motor para la velocidad seleccionada
         steps = len(speedSteps) # 4 u 8 dependiendo del modo de velocidad
+
+        direction = self.direction
+
+        if direction is 'clockwise':
+            stepCounter = 0;
+        else:
+            stepCounter = steps - 1;
 
         while self.active:
 
@@ -95,10 +101,15 @@ class Stepper28byj48:
                 if not self.active:
                     break
 
-                if stepCounter < (steps - 1):
+                if direction == 'clockwise' and stepCounter < (steps - 1):
                     stepCounter += 1
+                elif direction == 'counterclockwise' and (stepCounter > 0):
+                    stepCounter -= 1
                 else:
-                    stepCounter = 0
+                    if direction is 'clockwise':
+                        stepCounter = 0
+                    else:
+                        stepCounter = steps - 1
 
                 #print('pins: ', pins)
                 #print('pins[0]: ', pins[0])
@@ -111,7 +122,6 @@ class Stepper28byj48:
                 pins[1].value(speedSteps[stepCounter][1])
                 pins[2].value(speedSteps[stepCounter][2])
                 pins[3].value(speedSteps[stepCounter][3])
-
 
                 sleep(motorSpeed / 1000000.0) # Microsegundos a Segundos
 
