@@ -1,10 +1,15 @@
+#! /usr/bin/env python3
 
+from machine import Pin
 
-from Models.Stepper28byj48 import Stepper28byj48 
+led = Pin(25, Pin.OUT)
+led.on()
 
-stepper = Stepper28byj48()
+from Models.Stepper28byj48 import Stepper28byj48
+
+stepper = Stepper28byj48(pinArray=[2,3,4,5], debug = True, speed='hight')
 
 
 print('Iniciando programa')
 
-print('Velocidades', stepper.speedAvailable)
+stepper.start()
