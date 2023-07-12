@@ -7,7 +7,7 @@ led.on()
 
 from Models.Stepper28byj48 import Stepper28byj48
 
-stepper = Stepper28byj48(pinArray=[2,3,4,5], debug = True, speed='hight')
+stepper = Stepper28byj48(pinArray=[2,3,4,5], debug = True, speed='medium')
 
 
 print('Iniciando programa')

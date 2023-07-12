@@ -71,7 +71,7 @@ class Stepper28byj48:
         """
         Inicia el motor
         """
-        motorSpeed = 1200; # Microsegundos entre pasos
+        motorSpeed = 1200;
         stepCounter = 0;
         stepsPerRev = 4076;
 
@@ -84,11 +84,7 @@ class Stepper28byj48:
 
         #timer.init(freq=2.5, mode=Timer.PERIODIC, callback=blink)
 
-
-
         while True:
-            print('steps: ', steps)
-            print('speed:', self.speed)
 
             for i in range(0, (stepsPerRev * 2) - 1):
 
@@ -97,11 +93,11 @@ class Stepper28byj48:
                 else:
                     stepCounter = 0
 
-                #print('pins: ', pins)
-                #print('pins[0]: ', pins[0])
-                #print('pins[0].value: ', pins[0].value())
-                #print('speedSteps', speedSteps)
-                #print('speedSteps[stepCounter]', speedSteps[stepCounter])
+                print('pins: ', pins)
+                print('pins[0]: ', pins[0])
+                print('pins[0].value: ', pins[0].value())
+                print('speedSteps', speedSteps)
+                print('speedSteps[stepCounter]', speedSteps[stepCounter])
 
 
                 pins[0].value(speedSteps[stepCounter][0])
@@ -110,7 +106,7 @@ class Stepper28byj48:
                 pins[3].value(speedSteps[stepCounter][3])
 
 
-                sleep(motorSpeed / 1000000.0) # Microsegundos a segundos
+                sleep(motorSpeed / 1000000.0) # Microsegundos a Segundos
 
 
 
