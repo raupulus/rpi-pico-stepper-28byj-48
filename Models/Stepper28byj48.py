@@ -98,7 +98,6 @@ class Stepper28byj48:
             stepCounter = steps - 1;
 
 
-
         while self.active:
             if not self.active:
                 break
@@ -117,13 +116,6 @@ class Stepper28byj48:
                         stepCounter = 0
                     else:
                         stepCounter = steps - 1
-
-                #print('pins: ', pins)
-                #print('pins[0]: ', pins[0])
-                #print('pins[0].value: ', pins[0].value())
-                #print('speedSteps', speedSteps)
-                #print('speedSteps[stepCounter]', speedSteps[stepCounter])
-
 
                 pins[0].value(speedSteps[stepCounter][0])
                 pins[1].value(speedSteps[stepCounter][1])
@@ -160,6 +152,9 @@ class Stepper28byj48:
         pins[3].off()
 
     def setDirection(self, direction):
+        """
+        Cambia el sentido de giro del motor a clockwise o counterclockwise.
+        """
         if direction in ['clockwise', 'counterclockwise']:
             self.direction = direction
 
@@ -168,6 +163,9 @@ class Stepper28byj48:
 
 
     def setSpeed(self, speed):
+        """
+        Cambia la velocidad del motor a slow, medium o hight.
+        """
         if speed in ['slow', 'medium', 'hight']:
             self.speed = speed
 
@@ -175,6 +173,9 @@ class Stepper28byj48:
             print('Velocidad: ', speed)
 
     def moveToDegrees(self, degrees):
+        """
+        Mueve el motor a una cantidad de grados calculando los pasos necesarios a partir de los ciclos que necesita el motor para dar una vuelta.
+        """
         # Calcular a partir de los ciclos que necesita el motor para dar una vuelto el equivalente en grados.
         stepsPerRev = self.stepsPerRev
 

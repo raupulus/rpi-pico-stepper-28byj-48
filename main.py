@@ -9,10 +9,11 @@ led.on()
 
 from Models.Stepper28byj48 import Stepper28byj48
 
+# Inicializa el motor con los pines IN1, IN2, IN3, IN4 y velocidad de 2400 microsegundos teniendo en cuenta que el motor tiene 2038 pasos por revolución. Esto cambia según el motor y debes revisar el datasheet para ajustarlo correctamente.
 stepper = Stepper28byj48(pinArray=[2,3,4,5], debug = True, speed='hight', motorSpeed=2400, direction='clockwise', stepsPerRev=2038)
 
 
-print('Iniciando programa')
+print('Iniciando programa de Ejemplo')
 
 
 stepper.moveToDegrees(180)
@@ -32,6 +33,6 @@ stepper.setDirection('clockwise')
 stepper.moveToDegrees(360)
 
 
-# Infinito
+# Se crea un loop Infinito
 
 stepper.start()
