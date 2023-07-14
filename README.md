@@ -1,5 +1,8 @@
 # Demo para usar Stepper 28BYJ-48 con ULN2003
 
+![Stepper](images/image1.jpeg)
+![Stepper](images/image2.jpeg)
+
 Este repositorio incluye una librería para controlar el motor paso a paso 28BYJ-48 con el driver ULN2003.
 
 Se ha preparado para ser usado con micropython en una placa ESP32 o raspberry pi pico principalmente.
